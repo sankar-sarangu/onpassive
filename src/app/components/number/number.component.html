@@ -1,0 +1,27 @@
+<ng-container [formGroup]="parentForm">
+  <label for="{{ reqObj?.label }}"
+    >{{ reqObj?.label | titlecase }}&nbsp;{{
+      reqObj?.mandatory ? "*" : null
+    }}</label
+  >
+  <p-inputNumber
+    [min]="reqObj?.min"
+    [mode]="reqObj?.numberMode"
+    [minFractionDigits]="reqObj?.minDigit"
+    [formControlName]="reqObj?.formCtrl"
+    [ngClass]="{
+      'ng-dirty':
+        (isSubmitted || parentForm.get(reqObj.formCtrl)?.touched) &&
+        parentForm.get(reqObj.formCtrl)?.errors
+    }"
+  ></p-inputNumber>
+  <small
+    class="p-error"
+    *ngIf="
+      (isSubmitted || parentForm.get(reqObj.formCtrl)?.touched) &&
+      parentForm.get(reqObj.formCtrl)?.errors?.required
+    "
+  >
+    This is a required field
+  </small>
+</ng-container>

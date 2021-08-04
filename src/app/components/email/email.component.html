@@ -1,0 +1,37 @@
+<ng-container [formGroup]="parentForm"
+  ><label for="{{ reqObj.label }}"
+    >{{ reqObj.label | titlecase }}&nbsp;{{
+      reqObj?.mandatory ? "*" : null
+    }}</label
+  >
+  <input
+    id="{{ reqObj.label }}"
+    class="form-control"
+    type="email"
+    pInputText
+    [formControlName]="reqObj?.formCtrl"
+    [ngClass]="{
+      'is-invalid':
+        (isSubmitted || parentForm.get(reqObj.formCtrl)?.touched) &&
+        parentForm.get(reqObj.formCtrl)?.errors
+    }"
+  />
+  <small
+    class="p-error"
+    *ngIf="
+      (isSubmitted || parentForm.get(reqObj.formCtrl)?.touched) &&
+      parentForm.get(reqObj.formCtrl)?.errors?.required
+    "
+  >
+    This is a required field
+  </small>
+  <small
+    class="p-error"
+    *ngIf="
+      (isSubmitted || parentForm.get(reqObj.formCtrl)?.touched) &&
+      parentForm.get(reqObj.formCtrl)?.errors?.pattern
+    "
+  >
+    Invalid email format
+  </small>
+</ng-container>

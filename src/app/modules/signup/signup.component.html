@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <!-- The image half -->
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+    <!-- The content half -->
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+        <!-- Demo content-->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h5 class="d-flex justify-content-center">Lets begin!</h5>
+              <form [formGroup]="signupForm" (ngSubmit)="doSignUp()">
+                <div class="form-group mb-3">
+                  <app-text
+                    [reqObj]="{
+                      label: 'Full Name',
+                      mandatory: true,
+                      formCtrl: 'fullName'
+                    }"
+                    [parentForm]="signupForm"
+                    [isSubmitted]="isSubmitted"
+                  ></app-text>
+                </div>
+                <div class="form-group mb-3">
+                  <app-email
+                    [reqObj]="{
+                      label: 'Email',
+                      mandatory: true,
+                      formCtrl: 'email'
+                    }"
+                    [parentForm]="signupForm"
+                    [isSubmitted]="isSubmitted"
+                  ></app-email>
+                </div>
+                <button
+                  type="submit"
+                  class="
+                    btn btn-primary btn-block
+                    text-uppercase
+                    mb-2
+                    rounded-pill
+                    shadow-sm
+                  "
+                >
+                  Sign Up
+                </button>
+                <div class="text-center d-flex justify-content-between mt-4">
+                  <p>
+                    Back to
+                    <a
+                      href="javascript:void(0);"
+                      class="font-italic text-muted"
+                      [routerLink]="['/login']"
+                    >
+                      <u>Sign in</u></a
+                    >
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End -->
+      </div>
+    </div>
+    <!-- End -->
+  </div>
+</div>
